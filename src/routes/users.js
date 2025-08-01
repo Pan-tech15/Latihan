@@ -16,4 +16,6 @@ router.post('/', userController.createNewUser) //sama ajah ama yang di bawah
     })
 */
 
+router.patch('/:id', userController.UpdateUsers)
+
 export default router
