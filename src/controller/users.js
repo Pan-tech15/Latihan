@@ -55,6 +55,31 @@ const UpdateUsers = async (req, res) => {
     }
 }
 
-export default {getAllUsers, createNewUser, UpdateUsers}
+const DeleteUser = async (req, res) => {
+    const {id} = req.params
+
+    try {
+        const [data] = await usersModel.DeleteUser()
+
+        if(users.length === 0){
+            return res.status(404).json({
+                message: "user not found"
+            })
+        }
+
+        console.log("user:", users)
+
+        res.json({
+            message: "USERS deleted",
+            data: data
+        })
+    } catch (error) {
+        res.status(500).json({
+            message: 'Server error',
+            MessageFromServer: error.message
+        })
+    }
+}
+export default {getAllUsers, createNewUser, UpdateUsers, DeleteUser}
 
 //controller is where the functions will be.
